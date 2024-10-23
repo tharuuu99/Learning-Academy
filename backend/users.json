@@ -1,0 +1,26 @@
+[
+    {
+        "id":"65df8c2cb547a06bbad2f0le",
+        "name":"Monika",
+        "email":"mon@gmail.com",
+        "photoUrl":"",
+        "role":"instructor",
+        "gender":"female",
+        "address":"Colombo",
+        "phone":"0713570358",
+        "about":"",
+        "skills":null
+    },
+    {
+        "id":"65e2b7aa3d118503232304a5",
+        "name":"Rachel",
+        "email":"rach@gmail.com",
+        "photoUrl":"",
+        "role":"instructor",
+        "gender":"female",
+        "address":"Galle",
+        "phone":"0719211400",
+        "about":"",
+        "skills":null
+    }
+]

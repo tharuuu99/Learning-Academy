@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Manrope', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width:6px;
+    /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track{
+    background-color: #ff194b92;
+    border-radius: 20px;
+    transition: 1s;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fff1;
+}
