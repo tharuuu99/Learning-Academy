@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
-import Instructors from "../pages/Instructors";
-import Classes from "../pages/Classes";
-import Home from "../pages/Home/Home";
+import Home from "../pages/Home";
+
+
+import Instructors from "../pages/Instructors/Instructors";
+import Classes from "../pages/Classes/Classes";
+
 
 const router = createBrowserRouter([
   {
@@ -12,7 +15,8 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home/>
-      },
+      }
+      ,
       {
         path: "instructors",
         element:<Instructors/>
