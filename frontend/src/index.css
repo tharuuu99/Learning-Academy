@@ -6,9 +6,11 @@ body {
     font-family: 'Manrope', sans-serif;
 }
 
+
+/* Scroll bar */
 ::-webkit-scrollbar {
     width:6px;
-    /* Width of the scrollbar */
+ /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track{
@@ -18,5 +20,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #fff1;
+    background-color: #ff194b92;
+    border-radius:20px;
+    transition:1s;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #b68bdcf1;
+    transition:1s;
 }

@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeProvider, THEME_ID, createTheme } from "@mui/material/styles";
 import { Switch } from "@mui/material";
+import { motion } from "framer-motion";
 import photoURL from "../../assets/home/girl.jpg"
 import {FaBars} from "react-icons/fa"
-import { motion } from "framer-motion";
+
 
 const navLinks = [
-  { name: "Home", route: "/" },
-  { name: "Instructors", route: "/instructors" },
-  { name: "Classes", route: "/classes" },
+  {name: 'Home', route:'/'},
+  {name: 'Instructors', route:'/instructors'},
+  {name: 'Classes', route:'/classes'},
 ];
+
+
 
 const theme = createTheme({
   palette: {
@@ -27,12 +30,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isHome, setIsHome] = useState(false);
+  const [isHome, setIsHome] =  useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [navBg, setNavBg] = useState("bg-[#15151580]");
+  const [navBg, setNavBg] = useState('bg-[#15151580');
   const user = true;
 
   const toggleMobileMenu = () => {
@@ -49,17 +52,18 @@ const Navbar = () => {
     }
   }, [isDarkMode]);
 
-  useEffect(() => {
-    setIsHome(location.path === "/");
-    setIsLogin(location.pathname === "/login");
+  useEffect(()=>{
+    setIsHome(location.pathname === '/');
+    setIsLogin(location.pathname === '/login');
     setIsFixed(
-      location.pathname === "/register" || location.pathname === "/login"
+      location.pathname === '/register' || location.pathname === '/login'
     );
-  }, [location]);
+    
+  },[location]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentPosition = window.pageXOffset;
+      const currentPosition = window.pageYOffset;
       setScrollPosition(currentPosition);
     };
     window.addEventListener("scroll", handleScroll);
@@ -67,8 +71,8 @@ const Navbar = () => {
   },[]);
 
   useEffect(() => {
-    if (scrollPosition > 100) {
-      if (isHome) {
+    if(scrollPosition > 100) {
+      if(isHome) {
         setNavBg(
           "text-black bg-white bg-opacity-0 backdrop-filter backdrop-blur-xl dark:text-white"
         );
@@ -76,12 +80,13 @@ const Navbar = () => {
         setNavBg("text-black bg-white dark:bg-black dark:text-white");
       }
     } else {
-      setNavBg(`${
-        isHome || location.pathname === "/"
-          ? "bg-transparent"
-          : "bg-white dark:bg-black"
-      }
-            text-white dark:text-white`);
+      setNavBg(
+        `${
+          isHome || location.pathname === '/' 
+           ? "bg-transparent"
+           : "bg-white dark:bg-black"
+          } text-white dark:text-white`
+        );
     }
   }, [scrollPosition]);
 
@@ -90,18 +95,24 @@ const Navbar = () => {
   }
 
   return (
-    <motion.nav className={`${isHome ? navBg : "bg-white dark:bg-black backdrop-blur-2xl"} ${isFixed ?
+    <motion.nav
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    transition={{duration: 0.5}}
+    className={`${isHome ? navBg : "bg-white dark:bg-black backdrop-blur-2xl"} ${isFixed ?
         'static' : 'fixed'} top-0  transition-colors duration-500 ease-in-out w-full z-10`}>
       <div className="lg:w-[95%] mx-auto sm:px-6 lg:px-6">
         <div className="flex items-center justify-between px-4 py-4">
           {/* logo */}
-          <div>
-            <h1 className="inline-flex items-center gap-3 text-2xl font-bold">
-              Learning Academy  <img src="/learning-logo.png" alt="" className="w-8 h-8" />
-            </h1>
-            <p className="font-bold text-[13px] tracking-[8px]">
-              Quick Explore
-            </p>
+          <div onClick={()=>navigate('/')} className="flex items-center flex-shrink-0 cursor-pointer pl-7 md:p-0">
+            <div>
+              <h1 className="inline-flex items-center gap-3 text-2xl font-bold">
+                Learning Academy  <img src="/learning-logo.png" alt="" className="w-8 h-8" />
+              </h1>
+              <p className="font-bold text-[13px] tracking-[8px]">
+                Quick Explore
+              </p>
+            </div>
           </div>
           {/* mobile menu icons */}
 
@@ -119,12 +130,13 @@ const Navbar = () => {
                   <li key={Link.route}>
                     <NavLink
                       to={Link.route}
+                      style={{whiteSpace: "nowrap"}}//This text will stay on one line and will not wrap.
                       className={({ isActive }) =>
                         `font-bold ${
                           isActive
-                            ? "text-secondary"
+                            ? 'text-secondary'
                             : `${
-                                navBg.includes("bg-transaprent")
+                                navBg.includes("bg-transparent")
                                   ? "text-white"
                                   : "text-black dark:text-white"
                               }`
@@ -136,7 +148,7 @@ const Navbar = () => {
                   </li>
                 ))}
                 {/* based on users */}
-                {user ? null : isLogin ? (
+                {user ? null : isLogin ? (// like if else
                   <li>
                     <NavLink
                       to="/register"
@@ -145,14 +157,13 @@ const Navbar = () => {
                           isActive
                             ? "text-secondary"
                             : `${
-                                navBg.includes("bg-transaprent")
-                                  ? "text-white"
-                                  : "text-black dark:text-white"
+                                navBg.includes('bg-transparent')
+                                  ? 'text-white'
+                                  : 'text-black dark:text-white'
                               }`
                         } hover:text-secondary duration-300`
                       }
                     >
-                      {" "}
                       Register
                     </NavLink>
                   </li>
@@ -165,14 +176,13 @@ const Navbar = () => {
                           isActive
                             ? "text-secondary"
                             : `${
-                                navBg.includes("bg-transaprent")
+                                navBg.includes("bg-transparent")
                                   ? "text-white"
                                   : "text-black dark:text-white"
                               }`
                         } hover:text-secondary duration-300`
                       }
                     >
-                      {" "}
                       Login
                     </NavLink>
                   </li>
@@ -185,7 +195,7 @@ const Navbar = () => {
                           isActive
                             ? "text-secondary"
                             : `${
-                                navBg.includes("bg-transaprent")
+                                navBg.includes("bg-transparent")
                                   ? "text-white"
                                   : "text-black dark:text-white"
                               }`
@@ -207,7 +217,7 @@ const Navbar = () => {
                 {/* color toggle */}
                 <li>
                   <ThemeProvider theme={theme}>
-                    <div>
+                    <div className="flex flex-col items-center justify-center">
                       <Switch onChange={() => setIsDarkMode(!isDarkMode)} />
                       <h1 className="text-[8px]">Light/Dark</h1>
                     </div>
