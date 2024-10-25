@@ -8,7 +8,7 @@ const Gallery = () => {
   return (
     <div className="md:w-[80%] mx-auto my-28">
       <div className="mb-16">
-        <h1 className="text-5xl font-bold text-center">Our Gallery</h1>
+        <h1 className="text-5xl font-bold text-center dark:text-white">Our Gallery</h1>
       </div>
 
       {/* image container */}
