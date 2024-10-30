@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
 
 const Card = ({item}) => {
-    console.log(item)
+    //console.log(item)
     const {_id, name, Image, availableSeats, price, totalEnrolled } = item;
   return (
     <div className="flex flex-col justify-between p-3 m-4 overflow-hidden border rounded-lg shadow-lg border-secondary">
