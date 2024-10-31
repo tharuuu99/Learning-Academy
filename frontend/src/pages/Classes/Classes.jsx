@@ -2,16 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosFetch from "../../hooks/useAxiosFetch";
 import { Transition } from '@headlessui/react'
 import {Link} from "react-router-dom"
-import { AuthContext } from "../../utilities/providers/AuthProvider";
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import { toast } from 'react-toastify'; 
 
 
 
 const Classes = () => {
     const [classes,setClasses] = useState([]);
     const {currentUser} = useUser();
+    //console.log(currentUser)
     const role = currentUser?.role;
     const [enrolledClasses, setEnrolledClasses] = useState([]);
     const [hoveredCard, setHoveredCard] = useState([null]);
@@ -29,8 +29,50 @@ const Classes = () => {
 
     //handle add to cart
     const handleSelect = (id) =>{
-      console.log(id)
+      //console.log(id)
+      axiosSecure.get(`/enrolled-classes/${currentUser?.email}`)
+      .then(res =>setEnrolledClasses(res.data)).catch(err => console.log(err))
+
+
+      if(!currentUser){
+        return toast.error("Please Login First!")
+      }
+
+      axiosSecure.get(`/cart-item/${id}?email=${currentUser.email}`)
+      .then(res =>{
+        if(res.data.classId === id){
+          return toast.error("already Selected!")
+        }else if(enrolledClasses.find(item => item.classes._id === id)){
+          return toast.error("Already Enrolled!")
+        }else{
+          const data = {
+            classId:id,
+            userMail: currentUser.email,
+            data: new Date()
+          }
+
+          toast.promise(axiosSecure.post('/add-to-cart',data))
+          .then(res=>{
+            console.log(res.data)
+          }),{
+            pending: 'Selecting...',
+            success: {
+              render({data}){
+                return "Selected Successfully!"
+              }
+            },
+            error: {
+              render({data}){
+                //When the promise reject, data will contains the error
+                return `Error: ${data.message}`
+              }
+            }
+          }
+        }
+      })
     }
+
+    
 
     //console.log(classes);
   return (
@@ -54,7 +96,10 @@ const Classes = () => {
                 <Transition show={hoveredCard === index}>
                   <div className="transition duration-300 ease-in data-[closed]:opacity-0">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <button onClick className="px-4 py-2 text-white duration-300 rounded disabled:bg-red-300 bg-secondary hover:bg-red-700">Add to Cart</button>
+                      <button onClick={() => handleSelect(cls._id)} title={role == 'admin' || role === 'instructor' ? 'Instructor/Admin Can not be able to select' ? cls.availableSeats < 1 : 'No Seat Available' : "You can select Classes"}
+                      disabled={role === "admin" || role === 'instructor' || cls.availableSeats <1}
+                      
+                      className="px-4 py-2 text-white duration-300 rounded disabled:bg-red-300 bg-secondary hover:bg-red-700">Add to Cart</button>
                     </div>
                   </div>
                 </Transition>

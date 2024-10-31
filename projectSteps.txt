@@ -29,5 +29,9 @@
 *create useAxiosSecure.jsx
 *create useUser.jsx from react tanstack query document.
 *import useUser to class and create currentUser and role functions.
+*craete handleSelect function to class. now when click add to cart it goes to login because of response interceptor of useAxiosSecure.
+* install React-Toastify and import and use handling promises
+*create axiosSecure.get and toast.promise
+*create login 
 
 
