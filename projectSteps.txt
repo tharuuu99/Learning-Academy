@@ -28,10 +28,13 @@
 *create useAuth.jsx
 *create useAxiosSecure.jsx
 *create useUser.jsx from react tanstack query document.
-*import useUser to class and create currentUser and role functions.
-*craete handleSelect function to class. now when click add to cart it goes to login because of response interceptor of useAxiosSecure.
+*import useUser to classes and create currentUser and role functions.
+*craete handleSelect function to classes. now when click add to cart it goes to login because of response interceptor of useAxiosSecure.
 * install React-Toastify and import and use handling promises
-*create axiosSecure.get and toast.promise
+*create axiosSecure.get and toast.promise functions in classes
 *create login 
+*create GoogleLogin.jsx component.
+*create route to register
+
 
 

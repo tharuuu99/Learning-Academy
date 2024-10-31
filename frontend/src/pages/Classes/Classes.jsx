@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosFetch from "../../hooks/useAxiosFetch";
 import { Transition } from '@headlessui/react'
-import {Link} from "react-router-dom"
+import {Link,} from "react-router-dom"
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 
 
 
 const Classes = () => {
+  
     const [classes,setClasses] = useState([]);
     const {currentUser} = useUser();
     //console.log(currentUser)
@@ -41,7 +42,7 @@ const Classes = () => {
       axiosSecure.get(`/cart-item/${id}?email=${currentUser.email}`)
       .then(res =>{
         if(res.data.classId === id){
-          return toast.error("already Selected!")
+          return toast.error("Already Selected!")
         }else if(enrolledClasses.find(item => item.classes._id === id)){
           return toast.error("Already Enrolled!")
         }else{

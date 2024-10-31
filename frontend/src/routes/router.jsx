@@ -6,6 +6,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import Home from "../pages/Home/Home";
 import Login from "../pages/user/Login";
+import Register from "../pages/user/Register";
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element:<Login/>
+      },
+      {
+        path: "/register",
+        element:<Register/>
       }
     ]
   },
