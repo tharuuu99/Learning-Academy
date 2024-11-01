@@ -253,7 +253,7 @@ async function run() {
     });
 
     //cart info by user email(To retrieve the details of all classes in a user's cart based on their email address.)
-    app.get('/cart/:email',verifyJWT,  async (req, res) =>{
+    app.get('/cart-item/:email',verifyJWT,  async (req, res) =>{
       const email = req.params.email;
       const query = {userMail: email};
       const projection = {classId: 1};//Only the classId of the cart items will be retrieved.

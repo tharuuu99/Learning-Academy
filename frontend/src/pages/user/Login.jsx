@@ -20,6 +20,7 @@ const handleSubmit = e =>{
   const formData = Object.fromEntries(data)
   //console.log(formData);
   login(formData.email, formData.password).then(()=>{
+    alert("Login successful")
     navigate(location.state?.from || '/dashboard')
   }).catch((err)=>{
     setError(err.code);
@@ -55,7 +56,7 @@ const handleSubmit = e =>{
             </div>
 
             <button type='submit' className="block w-full px-5 py-3 text-sm font-medium text-white rounded-lg bg-secondary ">Sign in</button>
-            <p className="text-sm text-center text-gray-500">No account? <Link className='underline' to="register">Sign up</Link></p>
+            <p className="text-sm text-center text-gray-500">No account? <Link className='underline' to="/register">Sign up</Link></p>
         </form>
         <GoogleLogin/>
         
