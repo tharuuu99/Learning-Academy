@@ -109,7 +109,7 @@ const Classes = () => {
                       }
                       className="px-4 py-2 text-white duration-300 rounded disabled:bg-red-300 bg-secondary hover:bg-red-700"
                     >
-                      Select
+                      Add to Cart
                     </button>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ const Classes = () => {
                   ${cls.price}
                 </span>
               </div>
-              <Link to={`class/${cls._id}`}>
+              <Link to={`/class/${cls._id}`}>
                 <button className="w-full px-4 py-2 mx-auto mt-4 mb-2 text-white duration-300 rounded disabled:bg-red-300 bg-secondary hover:bg-red-700">
                   View
                 </button>

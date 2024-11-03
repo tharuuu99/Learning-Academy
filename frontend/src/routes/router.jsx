@@ -7,6 +7,7 @@ import Classes from "../pages/Classes/Classes";
 import Home from "../pages/Home/Home";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
+import SingleClasses from "../pages/Classes/SingleClasses";
 
 
 
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element:<Register/>
+      },
+      {
+        path: "/class/:id",
+        element:<SingleClasses/>,
+        loader: ({ params }) => fetch(`http://localhost:5000/class/${params.id}`),
       }
     ]
   },

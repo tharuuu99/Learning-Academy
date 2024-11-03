@@ -169,14 +169,6 @@ async function run() {
   });
 
 
-      // GET ALL CLASSES ADDED BY INSTRUCTOR
-      app.get('/classes/:email', verifyJWT, verifyInstructor, async (req, res) => {
-        const email = req.params.email;
-        const query = { instructorEmail: email };
-        const result = await classesCollection.find(query).toArray();
-        res.send(result);
-    })
-
     app.get('/classes',  async (req, res)=>{
       const query = { status: "approved" };
       const result = await  classesCollection.find().toArray();
@@ -188,10 +180,6 @@ async function run() {
     app.get('/classes', async (req, res) => {
       const query = { status: 'approved' };
       const result = await classesCollection.find(query).toArray();
-      res.send(result);
-  })
-  app.get('/classes-manage', async (req, res) => {
-      const result = await classesCollection.find().toArray();
       res.send(result);
   })
 

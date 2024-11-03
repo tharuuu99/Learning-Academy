@@ -40,8 +40,12 @@
 //Fourth Video//
 
 *create register form using 'React Hook Form'
-*create classes add to cart again.(handleSelect)
+*create classes add to cart again using alerts.(handleSelect)
 *check api again in index.js  that use to handleSelect in classes.jsx .
 *did some changes in useAuth
+
+//5th Video//
+*create singleClass.jsx.
+
 
 
