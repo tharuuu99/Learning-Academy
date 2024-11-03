@@ -1,9 +1,9 @@
-import useAuth from "./useAuth";
+import { useAuth } from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery} from '@tanstack/react-query'
 
 
-const useUser = () => {
+export const useUser = () => {
  const {user} = useAuth();
  const axiosSecure = useAxiosSecure();
  const {data: currentUser, isLoading, refetch} = useQuery({
@@ -12,9 +12,10 @@ const useUser = () => {
         const res = await axiosSecure.get(`/user/${user?.email}`);
         return res.data; 
     },
-    enabled: !!user?.email && !!localStorage.getItem('token')
+    enabled: !!user?.email && !!localStorage.getItem('token'),
  })
+ //console.log(isLoading, 'isLoading')
  return {currentUser, isLoading, refetch}
 }
 
-export default useUser
+

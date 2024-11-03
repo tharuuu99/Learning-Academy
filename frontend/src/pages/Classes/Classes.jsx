@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosFetch from "../../hooks/useAxiosFetch";
 import { Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import useUser from "../../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
@@ -40,7 +40,7 @@ const Classes = () => {
         return navigate("/login")
       }
 
-      axiosSecure.get(`/cart-item/${id}??email=${currentUser?.email}`)
+      axiosSecure.get(`/cart-item/${id}?email=${currentUser?.email}`)
       .then(res => {
         if(res.data.classId === id){
           return alert("Already selected")
@@ -50,7 +50,7 @@ const Classes = () => {
           const data = {
             classId: id,
             userMail: currentUser?.email,
-            data: new Date()
+            date: new Date()
           }
           axiosSecure.post('/add-to-cart', data)
           .then(res => {

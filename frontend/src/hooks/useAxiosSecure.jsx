@@ -29,7 +29,7 @@ useEffect(()=>{
       throw error;
     }
     throw error;
-  } )
+  } );
 
   return ()=>{
     axiosSecure.interceptors.request.eject(requestInterceptor);
@@ -38,6 +38,6 @@ useEffect(()=>{
 }, [logout, navigate, axiosSecure])
 
 return axiosSecure;
-}
+};
 
-export default useAxiosSecure
+export default useAxiosSecure;

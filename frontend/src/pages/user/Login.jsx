@@ -3,7 +3,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/headers/Social/GoogleLogin";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
 
