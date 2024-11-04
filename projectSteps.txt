@@ -45,7 +45,12 @@
 *did some changes in useAuth
 
 //5th Video//
-*create singleClass.jsx.
 
+*create singleClass.jsx.
+*create routes for dashboard in router.jsx
+*create DashboardLayout.jsx 
+*create adminNavItems
+*create lastMenuItem
+*create logout function.
 
 

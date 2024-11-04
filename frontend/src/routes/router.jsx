@@ -8,6 +8,8 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
 import SingleClasses from "../pages/Classes/SingleClasses";
+import DashboardLayout from "../layout/DashboardLayout";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 
 
@@ -44,6 +46,17 @@ const router = createBrowserRouter([
       }
     ]
   },
+
+  {
+    path: "/dashboard",
+    element:<DashboardLayout/>,
+    children:[
+      {
+        index: true,
+        element: <Dashboard/>
+      }
+    ]
+  }
 ]);
 
 export default router;
