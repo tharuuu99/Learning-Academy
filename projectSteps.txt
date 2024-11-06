@@ -52,5 +52,21 @@
 *create adminNavItems
 *create lastMenuItem
 *create logout function.
+*create adminNavItems,instructorNavItems,students functions.
+*outlet in DashboardLayout.jsx 
+*create Scroll component.
+*install npm i react-spinners and use it in dashboard.jsx and dashboardLayout.jsx
+*create DashboardNavigate and update router with student routes.
+*create StudentCP.jsx
+
+
+problems
+--------
+
+*google login problem
+*after submit register its navigate to home. but it should navigate to login.
+*when logging out click to cancel its navigate to home.
+*problems in singleClass.jsx
+
 
 

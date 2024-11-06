@@ -10,6 +10,7 @@ import Register from "../pages/user/Register";
 import SingleClasses from "../pages/Classes/SingleClasses";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import StudentCP from "../pages/Dashboard/Student/StudentCP";
 
 
 
@@ -54,6 +55,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard/>
+      },
+
+      //Student routes
+      {
+        path: "student-cp",
+        element:<StudentCP/>
       }
     ]
   }

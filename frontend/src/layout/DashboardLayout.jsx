@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useUser } from "../hooks/useUser";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BiHomeAlt, BiLogInCircle } from "react-icons/bi";
 import { FaUsers } from "react-icons/fa";
@@ -9,29 +9,90 @@ import { FaUsers } from "react-icons/fa";
 import { BsFillPostcardFill } from "react-icons/bs";
 //import { SiGoogleclassroom, SiInstructure } from "react-icons/si";
 import { TbBrandAppleArcade } from "react-icons/tb";
-import { MdOfflineBolt } from "react-icons/md";
+import { MdExplore, MdOfflineBolt, MdPendingActions } from "react-icons/md";
 import { GiFigurehead } from "react-icons/gi";
+import { IoSchoolSharp } from "react-icons/io5";
+import { IoMdDoneAll } from "react-icons/io";
+import Scroll from "../hooks/useScroll";
+import {FadeLoader} from "react-spinners"
+
 
 const adminNavItems = [
   {
     to: "/dashboard/admin-home",
     icon: <BiHomeAlt className="text-2xl" />,
-    label: "Dashboard Home",
+    label: "Dashboard Home"
   },
   {
     to: "/dashboard/manage-users",
     icon: <FaUsers className="text-2xl" />,
-    label: "Manage Users",
+    label: "Manage Users"
   },
   {
     to: "/dashboard/manage-class",
     icon: <BsFillPostcardFill className="text-2xl" />,
-    label: "Manage Class",
+    label: "Manage Class"
   },
   {
     to: "/dashboard/admin-home",
     icon: <TbBrandAppleArcade className="text-2xl" />,
-    label: "Applications",
+    label: "Applications"
+  },
+];
+
+const students =[
+  {
+    to: "/dashboard/student-cp",
+    icon: <BiHomeAlt className="text-2xl" />,
+    label: "Home",
+  },
+  {
+    to: "/dashboard/add-class",
+    icon: <MdExplore className="text-2xl" />,
+    label: "Add a class",
+  },
+  {
+    to: "/dashboard/my-classes",
+    icon: <IoSchoolSharp  className="text-2xl" />,
+    label: "My Classes",
+  },
+  {
+    to: "/dashboard/instructor-cp",
+    icon: <MdPendingActions className="text-2xl" />,
+    label: "Pending Courses",
+  },
+  {
+    to: "/dashboard/my-approved",
+    icon: <IoMdDoneAll  className="text-2xl" />,
+    label: "Approved CLasses",
+  },
+]
+
+const instructorNavItems = [
+  {
+    to: "/dashboard/instructor-cp",
+    icon: <BiHomeAlt className="text-2xl" />,
+    label: "Dashboard"
+  },
+  {
+    to: "/dashboard/enrolled-class",
+    icon: <FaUsers className="text-2xl" />,
+    label: "My Enroll"
+  },
+  {
+    to: "/dashboard/my-selected",
+    icon: <BsFillPostcardFill className="text-2xl" />,
+    label: "My Selected"
+  },
+  {
+    to: "/dashboard/my-payments",
+    icon: <TbBrandAppleArcade className="text-2xl" />,
+    label: "Payment History"
+  },
+  {
+    to: "/dashboard/apply-instructor",
+    icon: <TbBrandAppleArcade className="text-2xl" />,
+    label: "Apply for Instructor"
   },
 ];
 
@@ -39,17 +100,17 @@ const lastMenuItem = [
   {
     to: "/",
     icon: <BiHomeAlt className="text-2xl" />,
-    label: "Main Home",
+    label: "Main Home"
   },
   {
     to: "/trending",
     icon: <MdOfflineBolt className="text-2xl" />,
-    label: "Trending",
+    label: "Trending"
   },
   {
     to: "/browse",
     icon: <GiFigurehead className="text-2xl" />,
-    label: "Following",
+    label: "Following"
   },
 ];
 
@@ -58,7 +119,8 @@ const DashboardLayout = () => {
   const { loader, logout } = useAuth();
   const { currentUser } = useUser();
   const navigate = useNavigate();
-  //const role = currentUser?.role;
+  const role = currentUser?.role;
+  //console.log(role)
 
   const handleLogout = () => {
     Swal.fire({
@@ -85,10 +147,10 @@ const DashboardLayout = () => {
     });
   };
 
-  const role = "admin";
+  //const role = "user";
 
-  if (loader) {
-    return <div>Loading...</div>;
+  if(loader){
+    return <div className="flex items-center justify-center h-screen"><FadeLoader color="#F44336" size={50}/></div>
   }
 
   return (
@@ -107,17 +169,21 @@ const DashboardLayout = () => {
               open && "rotate-[360deg]"
             }`}
           />
-          <h1
-            onClick={() => setOpen(!open)}
-            className={`text-dark-primary cursor-pointer font-bold origin-left text-l duration-200 ${
-              !open && "scale-0"
-            }`}
-          >
-            Learning Academy
-          </h1>
+          <Link to="/">
+            <h1
+              onClick={() => setOpen(!open)}
+              className={`text-dark-primary cursor-pointer font-bold origin-left text-l duration-200 ${
+                !open && "scale-0"
+              }`}
+            >
+              Learning Academy
+            </h1>
+          </Link>
         </div>
 
         {/* Navlinks */}
+
+        {/* admin roles */}
         {role === "admin" && (
           <ul className="pt-6">
             <p className={`ml-3 text-gray-500 ${!open && "hidden"}`}>
@@ -125,6 +191,68 @@ const DashboardLayout = () => {
             </p>
             {role === "admin" &&
               adminNavItems.map((menuItem, index) => (
+                <li key={index} className="mb-2">
+                  <NavLink
+                    to={menuItem.to}
+                    className={({ isActive }) =>
+                      `flex ${
+                        isActive ? "bg-red-500 text-white " : "text-[#413F44]"
+                      }duration-150 rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-white font-bold text-sm items-center gap-x-4`
+                    }
+                  >
+                    {menuItem.icon}
+                    <span
+                      className={`${
+                        !open && "hidden"
+                      } origin-left duration-200`}
+                    >
+                      {menuItem.label}{" "}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
+          </ul>
+        )}
+
+        {/* instructor roles */}
+        {role === "instructor" && (
+          <ul className="pt-6">
+            <p className={`ml-3 text-gray-500 ${!open && "hidden"}`}>
+              <small> MENU </small>
+            </p>
+            {role === "instructor" &&
+              instructorNavItems.map((menuItem, index) => (
+                <li key={index} className="mb-2">
+                  <NavLink
+                    to={menuItem.to}
+                    className={({ isActive }) =>
+                      `flex ${
+                        isActive ? "bg-red-500 text-white " : "text-[#413F44]"
+                      }duration-150 rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-white font-bold text-sm items-center gap-x-4`
+                    }
+                  >
+                    {menuItem.icon}
+                    <span
+                      className={`${
+                        !open && "hidden"
+                      } origin-left duration-200`}
+                    >
+                      {menuItem.label}{" "}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
+          </ul>
+        )}
+
+        {/* student roles */}
+        {role === "user" && (
+          <ul className="pt-6">
+            <p className={`ml-3 text-gray-500 ${!open && "hidden"}`}>
+              <small> MENU </small>
+            </p>
+            {role === "user" &&
+              students.map((menuItem, index) => (
                 <li key={index} className="mb-2">
                   <NavLink
                     to={menuItem.to}
@@ -187,6 +315,11 @@ const DashboardLayout = () => {
             </button>
           </li>
         </ul>
+      </div>
+
+      <div>
+        <Scroll/>
+        <Outlet/>
       </div>
     </div>
   );
