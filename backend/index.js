@@ -294,7 +294,7 @@ async function run() {
       res.send(result);
   })
 
-  app.get('/cart-item/:email', verifyJWT, async (req, res) => {
+  app.get('/cart/:email', verifyJWT, async (req, res) => {
     const email = req.params.email;
     const query = { userMail: email };
     const projection = { classId: 1 };

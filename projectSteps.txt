@@ -54,10 +54,16 @@
 *create logout function.
 *create adminNavItems,instructorNavItems,students functions.
 *outlet in DashboardLayout.jsx 
-*create Scroll component.
+*create useScroll.jsx in hooks.
 *install npm i react-spinners and use it in dashboard.jsx and dashboardLayout.jsx
 *create DashboardNavigate and update router with student routes.
 *create StudentCP.jsx
+
+
+//6th video//
+
+*create route paths for enrolledClass, selectedClass ,myPaymentHistory and AsInstructor 
+*create selectedClass.jsx
 
 
 problems
@@ -67,6 +73,7 @@ problems
 *after submit register its navigate to home. but it should navigate to login.
 *when logging out click to cancel its navigate to home.
 *problems in singleClass.jsx
-
+*create User dashboard home in proper way.
+*In dashboard navbar when in a part hover is also working for button related to that part.
 
 

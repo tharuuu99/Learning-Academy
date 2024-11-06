@@ -40,11 +40,11 @@ const adminNavItems = [
   },
 ];
 
-const students =[
+const instructorNavItems =[
   {
-    to: "/dashboard/student-cp",
+    to: "/dashboard/instructor-cp",
     icon: <BiHomeAlt className="text-2xl" />,
-    label: "Home",
+    label: "Dashboard",
   },
   {
     to: "/dashboard/add-class",
@@ -68,11 +68,11 @@ const students =[
   },
 ]
 
-const instructorNavItems = [
+const students = [
   {
-    to: "/dashboard/instructor-cp",
+    to: "/dashboard/student-cp",
     icon: <BiHomeAlt className="text-2xl" />,
-    label: "Dashboard"
+    label: "Home"
   },
   {
     to: "/dashboard/enrolled-class",
