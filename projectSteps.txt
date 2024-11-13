@@ -75,5 +75,5 @@ problems
 *problems in singleClass.jsx
 *create User dashboard home in proper way.
 *In dashboard navbar when in a part hover is also working for button related to that part.
-
+* some mistakes in names of dashboard
 

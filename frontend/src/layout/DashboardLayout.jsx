@@ -317,7 +317,7 @@ const DashboardLayout = () => {
         </ul>
       </div>
 
-      <div>
+      <div className="flex-1 h-screen px-8 overflow-y-auto ">
         <Scroll/>
         <Outlet/>
       </div>
