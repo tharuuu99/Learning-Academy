@@ -64,6 +64,8 @@
 
 *create route paths for enrolledClass, selectedClass ,myPaymentHistory and AsInstructor 
 *create selectedClass.jsx
+*npm install moment
+*create payment.jsx and create route path.
 
 
 problems
