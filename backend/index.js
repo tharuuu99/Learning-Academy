@@ -282,6 +282,7 @@ async function run() {
       const newCartItem = req.body;
       const result = await cartCollection.insertOne(newCartItem);
       res.send(result);
+      console.log(result)
   })
 
      // Get cart item id for checking if a class is already in cart
@@ -313,9 +314,9 @@ async function run() {
   })
 
     //payment routes
-    app.post('/create-payment-intent', async (req, res)=>{
+    app.post('/create-payment-intent',verifyJWT, async (req, res)=>{
       const { price } =  req.body;
-      const amount = parseInt(price) = 100;
+      const amount = parseInt(price) *  100;
       const paymentIntent = await stripe.paymentIntents.create({
         amount:amount,
         currency:"usd",

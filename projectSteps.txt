@@ -66,6 +66,14 @@
 *create selectedClass.jsx
 *npm install moment
 *create payment.jsx and create route path.
+*install stripe for frontend and import loadStripe and get frontend key.
+*create checkoutPage.jsx 
+*In React, <> </> is just a shortcut for wrapping multiple elements together without adding an extra HTML tag, like a <div>. 
+<>
+  <div>Element 1</div>
+  <div>Element 2</div>
+</>
+*create Payment.css and called it in Payment.jsx
 
 
 problems
