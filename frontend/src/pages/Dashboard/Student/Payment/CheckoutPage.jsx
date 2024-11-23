@@ -28,7 +28,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
                 const classesId = res.data.map(item => item._id);
                 setCart(classesId)
             })
-            .catch((err) => {
+            .catch((err) => {  
                 console.log(err)
             })
     }, [])
@@ -73,16 +73,16 @@ const CheckoutPayment = ({ price , cartItm }) => {
                         email: currentUser.email || 'Anonymous',
                     },
                 },
-            },
+            }
         );
 
         
         if (confirmError) {
-            console.log('[error]', confirmError);
+            console.log('[Confirm Error]', confirmError);
             setMessage(confirmError.message)
         }
         else {
-            console.log('[PaymentMethod]', paymentIntent);
+            console.log('[Payment Intent]', paymentIntent);
 
             // PAYMENT LOGIC HERE WHEN PAYMENT IS SUCCESSFUL
             if (paymentIntent.status === 'succeeded') {
@@ -104,16 +104,17 @@ const CheckoutPayment = ({ price , cartItm }) => {
                     classesId : cartItm ? [cartItm] : cart, 
                     date : new Date()
                 }
-                // axiosSecure.post('/payment-info', data)
-                fetch(URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        authorization: `Bearer ${localStorage.getItem('token')}`
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then(res => res.json())
+                //console.log(data)
+                //  axiosSecure.post('/payment-info', data)
+                 fetch(URL, {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json',
+                         authorization: `Bearer ${localStorage.getItem('token')}`
+                     },
+                     body: JSON.stringify(data),
+                 })
+                     .then(res => res.json())
                     .then(res => {
                         console.log(res)
                         if (res.deletedResult.deletedCount > 0 && res.paymentResult.insertedId && res.updatedResult.modifiedCount > 0) {
