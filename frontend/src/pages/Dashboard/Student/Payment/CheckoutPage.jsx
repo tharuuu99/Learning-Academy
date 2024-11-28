@@ -20,6 +20,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
         return <Navigate to="/dashboard/my-selected" replace />
     }
 
+    
 
     useEffect(() => {
         axiosSecure.get(`/cart/${currentUser?.email}`)
@@ -40,6 +41,8 @@ const CheckoutPayment = ({ price , cartItm }) => {
 
             })
     }, [])
+
+    
     const handleSubmit = async (event) => {
         setMessage('');
         event.preventDefault();
@@ -82,18 +85,26 @@ const CheckoutPayment = ({ price , cartItm }) => {
             setMessage(confirmError.message)
         }
         else {
-            console.log('[Payment Intent]', paymentIntent);
+            console.log('[Payment Intent]', paymentIntent)
 
             // PAYMENT LOGIC HERE WHEN PAYMENT IS SUCCESSFUL
-            if (paymentIntent.status === 'succeeded') {
-                const transactionId = paymentIntent.id;
-                const paymentMethod = paymentIntent.payment_method;
-                const amount = paymentIntent.amount / 100;
-                const currency = paymentIntent.currency;
-                const paymentStatus = paymentIntent.status;
-                const userName = currentUser.name;
-                const userEmail = currentUser.email;
-                const data = {
+             if (paymentIntent.status === 'succeeded') {
+                 const transactionId = paymentIntent.id;
+                 const paymentMethod = paymentIntent.payment_method;
+                 const amount = paymentIntent.amount / 100;
+                 const currency = paymentIntent.currency;
+                 const paymentStatus = paymentIntent.status;
+                 const userName = currentUser?.name;
+                 const userEmail = currentUser?.email;
+                 const classesId = cartItm ? [cartItm] : cart;
+
+                //  if (!classesId.length) {
+                //     console.log('Error: classesId is empty.');
+                //     setMessage('No classes selected for payment.');
+                //     return;
+                // }
+        
+                 const data = {
                     transactionId,
                     paymentMethod,
                     amount,
@@ -101,29 +112,30 @@ const CheckoutPayment = ({ price , cartItm }) => {
                     paymentStatus,
                     userName,
                     userEmail,
-                    classesId : cartItm ? [cartItm] : cart, 
+                    classesId,
                     date : new Date()
-                }
+                 }
                 //console.log(data)
                 //  axiosSecure.post('/payment-info', data)
-                 fetch(URL, {
-                     method: 'POST',
-                     headers: {
-                         'Content-Type': 'application/json',
-                         authorization: `Bearer ${localStorage.getItem('token')}`
-                     },
-                     body: JSON.stringify(data),
-                 })
-                     .then(res => res.json())
-                    .then(res => {
-                        console.log(res)
-                        if (res.deletedResult.deletedCount > 0 && res.paymentResult.insertedId && res.updatedResult.modifiedCount > 0) {
-                            setSucceeded('Payment Successful , You can now access your classes')
-                        }
+                  fetch(URL, {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          authorization: `Bearer ${localStorage.getItem('token')}`
+                      },
+                      body: JSON.stringify(data),
+                  })
+                      .then(res => res.json())
+                     .then(res => {
+                         console.log(res)
+                         if (res.deletedResult.deletedCount > 0 && res.paymentResult.insertedId && res.updatedResult.modifiedCount > 0) {
+                             setSucceeded('Payment Successful , You can now access your classes');
+                            // Navigate('/dashboard/enrolled-class')
+                         }
                         else {
                             setSucceeded('Payment Failed , Please try again')
                         }
-                    })
+                     })
                     .catch(err => {
                         console.log(err)
                     })

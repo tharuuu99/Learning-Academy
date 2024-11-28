@@ -332,7 +332,7 @@ async function run() {
     app.post('/payment-info',verifyJWT,  async (req,res)=>{
       const paymentInfo = req.body;
       const classesId = paymentInfo.classesId;
-      const userEmail = paymentInfo.userEMail;
+      const userEmail = paymentInfo.userEmail;
       const singleClassId = req.query.classId;
       let query;
       if(singleClassId){
@@ -343,15 +343,15 @@ async function run() {
       const classesQuery = {_id:{$in : classesId.map( id => new ObjectId(id))}};
       const classes = await cartCollection.find(classesQuery).toArray();
       const newEnrolledData = {
-        userEail: userEmail,
-        classId : singleClassId.map(id => new ObjectId(id)),
-        transactionId: paymentInfo.transactionId
-      };
+        userEmail: userEmail,
+        classesId : classesId.map(id => new ObjectId(id)),
+        transactionId: paymentInfo.transactionId,
+      }
 
       const updatedDoc = {
         $set:{
           totalEnrolled: classes.reduce((total, current)=>total + current.totalEnrolled,0) + 1 || 0,
-          availableSeats:classes.reduce((total, current)=>total +current.availableSeats,0) -1 || 0
+          availableSeats:classes.reduce((total, current)=>total +current.availableSeats,0) -1 || 0,
         }
       };
       const updatedResult = await classesCollection.updateMany(classesQuery, updatedDoc, {upsert:true});
@@ -359,8 +359,8 @@ async function run() {
       const deletedResult = await cartCollection.deleteMany(query);
       const paymentResult = await paymentCollection.insertOne(paymentInfo);
 
-      res.send({paymentResult, deletedResult, enrolledResult, updatedResult})
-    });
+      res.send({paymentResult, deletedResult, enrolledResult, updatedResult});
+    })
 
     //get payment history
     app.get("/payment-history/:email", async (req, res)=>{
