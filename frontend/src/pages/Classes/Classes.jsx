@@ -21,6 +21,8 @@ const Classes = () => {
   const handleHover = (index) => {
     setHoveredCard(index);
   };
+
+  
   useEffect(() => {
     axiosFetch
       .get("/classes")
@@ -28,38 +30,42 @@ const Classes = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleSelect = (id) => {
-    //console.log(id)
-    axiosSecure
-      .get(`/enrolled-classes/${currentUser?.email}`)
-      .then((res) => setEnrolledClasses(res.data))
-      .catch((err) => console.log(err));
+  const handleSelect = async (id) => {
+    if (!currentUser) {
+        alert("Please login first");
+        return navigate("/login");
+    }
 
-      if(!currentUser){
-        alert("Please login first")
-        return navigate("/login")
-      }
+    try {
+        // Fetch enrolled classes and ensure the state is updated
+        const res = await axiosSecure.get(`/enrolled-classes/${currentUser?.email}`);
+        const fetchedEnrolledClasses = res.data;
 
-      axiosSecure.get(`/cart-item/${id}?email=${currentUser?.email}`)
-      .then(res => {
-        if(res.data.classId === id){
-          return alert("Already selected")
-        }else if( enrolledClasses.find(item => item.classes._id === id)){
-          return alert("Already enrolled")
-        }else{
-          const data = {
+        // Check if already enrolled
+        if (fetchedEnrolledClasses.find((item) => item.classes._id === id)) {
+            return alert("Already enrolled");
+        }
+
+        // Check if already selected
+        const cartRes = await axiosSecure.get(`/cart-item/${id}?email=${currentUser?.email}`);
+        if (cartRes.data.classId === id) {
+            return alert("Already selected");
+        }
+
+        // Add to cart if not already enrolled or selected
+        const data = {
             classId: id,
             userMail: currentUser?.email,
-            date: new Date()
-          }
-          axiosSecure.post('/add-to-cart', data)
-          .then(res => {
-            alert("Successfully added to the cart!");
-            console.log(res.data)
-          })
-        }
-      })
-  };
+            date: new Date(),
+        };
+        const addRes = await axiosSecure.post('/add-to-cart', data);
+        alert("Successfully added to the cart!");
+        console.log(addRes.data);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 
   return (
     <div>
