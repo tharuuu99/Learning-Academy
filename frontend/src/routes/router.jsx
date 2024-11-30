@@ -10,12 +10,13 @@ import Register from "../pages/user/Register";
 import SingleClasses from "../pages/Classes/SingleClasses";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import StudentCP from "../pages/Dashboard/Student/StudentCP";
 import EnrolledClasses from "../pages/Dashboard/Student/Enroll/EnrolledClasses";
 import SelectedClass from "../pages/Dashboard/Student/SelectedClass";
 import MyPaymentHistory from "../pages/Dashboard/Student/Payment/History/MyPaymentHistory";
 import AsInstructor from "../pages/Dashboard/Student/Apply/AsInstructor";
 import Payment from "../pages/Dashboard/Student/Payment/Payment";
+import StudentCP from "../pages/Dashboard/Student/StudentCP";
+import CourseDetails from "../pages/Dashboard/Student/Enroll/CourseDetails";
 
 
 
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: "user/payment",
         element:<Payment/>
+      },
+      {
+        path: "course-details",
+        element:<CourseDetails/>
       }
     ]
   }

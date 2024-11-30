@@ -76,6 +76,7 @@
 *create Payment.css and called it in Payment.jsx
 *create handleSubmit in checkoutPage.jsx 
 *create MyPaymentHistory.jsx
+* create asInstructor.jsx
 
 problems
 --------
