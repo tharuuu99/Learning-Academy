@@ -6,10 +6,11 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "./CheckoutPage";
 
 
-const stripePromise = loadStripe("pk_test_51QKvCrGCRH6i01H5mBDaUO5HfGOhAPWrvBUx999MqoXXk8aMA3RLl4nbcClQEgwPJTk7hsCsOEe2tG4QdDIS1z1d00BFIyYIDb");
-const key = import.meta.env.VITE_STRIPE;
 
 const Payment = () => {
+  
+const key = import.meta.env.VITE_STRIPE;
+
   const location = useLocation();
   console.log(location);
   const price = location?.state?.price;
@@ -18,6 +19,7 @@ const Payment = () => {
     return <Navigate to="/dashboard/my-selected"/>
   }
 
+  const stripePromise = loadStripe(key);
   return (
     <div className="my-40 stripe-custom-class">
       <Elements stripe={stripePromise}>

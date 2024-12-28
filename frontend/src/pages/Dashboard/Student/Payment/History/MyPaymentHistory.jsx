@@ -69,7 +69,7 @@ const MyPaymentHistory = () => {
         <div className="">
             <div className="">
                 <h1 className='font-bold'>Total Payments : {payments.length}</h1>
-                <h1 className='font-bold'>Total Paid : {totalPaidAmount}</h1>
+                <h1 className='font-bold'>Total Paid : LKR {totalPaidAmount}</h1>
             </div>
             <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -92,7 +92,7 @@ const MyPaymentHistory = () => {
                                                 className="transition duration-300 ease-in-out border-b hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
                                             >
                                                 <td className="px-6 py-4 font-medium whitespace-nowrap">{(page - 1) * itemsPerPage + idx + 1}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap">{payment.amount}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap">LKR {payment.amount}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap">{payment.classesId.length}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     {moment(payment.date).format('MMMM Do YYYY, h:mm a')}

@@ -98,7 +98,7 @@ function EnrolledClasses() {
               </p>
               <div className="flex items-center justify-between w-full">
                 <h1 className="font-bold text-gray-500">
-                  ${item.classes.price}
+                  LKR {item.classes.price}
                 </h1>
                 <Link to={`/dashboard/course-details`}>
                 <button className="px-3 py-1 mr-5 font-bold text-white shadow-md bg-secondary rounded-xl">

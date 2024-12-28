@@ -9,7 +9,7 @@ const Card = ({item}) => {
       <div className="p-4">
         <h2 className="mb-2 text-xl font-semibold dark:text-white">{name}</h2>
         <p className="mb-2 text-gray-600">Available Seats: {availableSeats}</p>
-        <p className="mb-2 text-gray-600"> Price: Rs{price}</p>
+        <p className="mb-2 text-gray-600"> Price: LKR {price}</p>
         <p className="mb-2 text-gray-600">Total Students: {totalEnrolled}</p>
         <Link to={`class/${_id}`} className="mt-2 text-center">
             <button className="w-full px-2 py-1 mt-2 font-bold text-white bg-secondary rounded-xl">Select</button>

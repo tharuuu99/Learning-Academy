@@ -112,7 +112,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
                     paymentStatus,
                     userName,
                     userEmail,
-                    classesId,
+                    classesId : cartItm ? [cartItm] : cart, 
                     date : new Date()
                  }
                 //console.log(data)

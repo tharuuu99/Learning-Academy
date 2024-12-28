@@ -112,7 +112,7 @@ const SelectedClass = () => {
                             <span>{item.name}</span>
                           </div>
                         </td>
-                        <td className="py-4">${item.price}</td>
+                        <td className="py-4">LKR {item.price}</td>
                         <td className="py-4">
                           <p className="text-sm text-green-700">
                             {moment(item.submitted).format("MMMM Do YYYY")}
@@ -136,20 +136,20 @@ const SelectedClass = () => {
             <h2 className="mb-4 text-lg font-semibold"> Summary</h2>
             <div className="flex justify-between mb-2">
               <span>Subtotal</span>
-              <span>${totalPrice}</span>
+              <span>LKR {totalPrice}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Taxes</span>
-              <span>${totalTax.toFixed(2)}</span>
+              <span>LKR {totalTax.toFixed(2)}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Extra Fees</span>
-              <span>$0</span>
+              <span>LKR 0</span>
             </div>
             <hr className="my-2"/>
             <div className="flex justify-between mb-2">
               <span className="font-semibold">Total</span>
-              <span className="font-semibold">${price.toFixed(2)}</span>
+              <span className="font-semibold">LKR {price.toFixed(2)}</span>
             </div>
             <button disabled={price <= 0} onClick={() => navigate('/dashboard/user/payment', { state: {price:price, itemId:null}})} className="w-full px-4 py-2 mt-4 text-white rounded-lg bg-secondary">
               Checkout

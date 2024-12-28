@@ -4,13 +4,16 @@ import { MdBookOnline } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import img from "../../assets/home/girl.jpg";
 
 
 const SingleClass = () => {
   
   
+   
+  
     const course = useLoaderData();
+    const instructor = useLoaderData();
     const { currentUser } = useUser();
     const role = currentUser?.role;
     const axiosSecure = useAxiosSecure();
@@ -169,12 +172,7 @@ const SingleClass = () => {
                       <div className="flex-none">
                         <div className="w-12 h-12 rounded">
                           
-                        <img
-  src={encodeURI(currentUser.photoUrl)}
-  alt="User Avatar"
-  className="object-cover w-full h-full rounded"
-/>
-
+                        <img src={img} alt="" />
                         </div>
                       </div>
                       <div className="flex-1">

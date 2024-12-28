@@ -147,7 +147,7 @@ const DashboardLayout = () => {
         logout()
           .then(
             Swal.fire({
-              title: "Logged Out!",
+              title: "Signed out",
               text: "Done",
               icon: "success",
             })
