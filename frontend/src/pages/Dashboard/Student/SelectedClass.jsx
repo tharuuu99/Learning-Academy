@@ -78,7 +78,7 @@ const SelectedClass = () => {
   return (
     <div>
     <div className="my-6 text-center">
-      <h1 className="text-4xl font-bold ">My <span className="text-secondary">Selected</span> Class</h1>
+      <h1 className="text-4xl font-bold text-black">My Selected Classes</h1>
     </div>
 
     <div className="h-screen py-8 ">

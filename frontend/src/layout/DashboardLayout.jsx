@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useUser } from "../hooks/useUser";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { IoMdDoneAll } from "react-icons/io";
 import Scroll from "../hooks/useScroll";
 import {FadeLoader} from "react-spinners"
-
+import useWindowSize from "../hooks/useWindowSize";
 
 const adminNavItems = [
   {
@@ -34,7 +34,7 @@ const adminNavItems = [
     label: "Manage Class"
   },
   {
-    to: "/dashboard/admin-home",
+    to: "/dashboard/applications",
     icon: <TbBrandAppleArcade className="text-2xl" />,
     label: "Applications"
   },
@@ -57,7 +57,7 @@ const instructorNavItems =[
     label: "My Classes",
   },
   {
-    to: "/dashboard/instructor-cp",
+    to: "/dashboard/my-pending",
     icon: <MdPendingActions className="text-2xl" />,
     label: "Pending Courses",
   },
@@ -115,13 +115,24 @@ const lastMenuItem = [
 ];
 
 const DashboardLayout = () => {
+  const { width } = useWindowSize();
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (width < 768) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  }, [width]);
+  
   const { loader, logout } = useAuth();
   const { currentUser } = useUser();
   const navigate = useNavigate();
   const role = currentUser?.role;
   //console.log(role)
-
+  
+  
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -147,7 +158,7 @@ const DashboardLayout = () => {
     });
   };
 
-  //const role = "user";
+  
 
   if(loader){
     return <div className="flex items-center justify-center h-screen"><FadeLoader color="#F44336" size={50}/></div>
@@ -155,10 +166,12 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex">
+      
+
       <div
         className={`${
-          open ? "w-72 overflow-y-auto" : "w-[90px]  overflow-auto"
-        } bg-white h-screen p-5 md:block hidden pt-8 relative duration-300`}
+          open ? "w-60 overflow-y-auto" : "w-[90px]  overflow-auto"
+        } bg-white h-screen p-5 md:block  pt-8 relative duration-300`}
       >
         <div className="flex items-center gap-x-4">
           <img
@@ -186,7 +199,7 @@ const DashboardLayout = () => {
         {/* admin roles */}
         {role === "admin" && (
           <ul className="pt-6">
-            <p className={`ml-3 text-gray-500 ${!open && "hidden"}`}>
+            <p className={`ml-3 text-gray-500   ${!open && "hidden"}`}>
               <small> MENU </small>
             </p>
             {role === "admin" &&
@@ -212,6 +225,8 @@ const DashboardLayout = () => {
                 </li>
               ))}
           </ul>
+          
+          
         )}
 
         {/* instructor roles */}
@@ -316,7 +331,7 @@ const DashboardLayout = () => {
           </li>
         </ul>
       </div>
-
+      
       <div className="flex-1 h-screen px-8 overflow-y-auto ">
         <Scroll/>
         <Outlet/>

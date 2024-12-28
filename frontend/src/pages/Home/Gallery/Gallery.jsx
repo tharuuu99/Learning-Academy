@@ -5,6 +5,7 @@ import image4 from "../../../assets/gallery/image4.jpg"
 import image5 from "../../../assets/gallery/image5.jpg"
 
 const Gallery = () => {
+  
   return (
     <div className="md:w-[80%] mx-auto my-28">
       <div className="mb-16">

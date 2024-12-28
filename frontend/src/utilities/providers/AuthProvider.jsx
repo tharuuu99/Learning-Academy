@@ -74,34 +74,36 @@ const AuthProvider = ({ children }) => {
 
     // console.log(user)
     // Observe user state (auth)
-    useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged((user) =>{
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             setUser(user);
+            if (user) {
 
-            if(user){
-                axios.post('http://localhost:5000/api/set-token',{email: user.email, name: user.displayName})
-                .then((data) => {
-                    //console.log(data.data.token)
-                    if(data.data.token){
-                        localStorage.setItem('token', data.data.token);
-                        setLoader(false)
-                    }
-                });
-            }else{
+                axios.post('http://localhost:5000/api/set-token', { email: user.email, name: user.displayName })
+                    .then(data => {
+                        // console.log(data.data.token)
+                        if (data.data.token) {
+                            localStorage.setItem('token', data.data.token);
+                            setLoader(false);
+                        }
+                    })
+            }
+            else {
                 localStorage.removeItem('token');
                 setLoader(false);
             }
         });
-        return ()=> unsubscribe();
-    },[]);
 
+        return () => unsubscribe();
+    }, []);
 
-  const contextValue = {user, signUp, login, logout, updateUser, googleLogin, error, setError, loader, setLoader}
-return (
-    <AuthContext.Provider value={contextValue}>
-        {children}
-    </AuthContext.Provider>
-  );
+    
+    const contextVale = { user, loader, setLoader, signUp, login, logout, updateUser, error, setError , googleLogin }
+    return (
+        <AuthContext.Provider value={contextVale}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export default AuthProvider;

@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/headers/Navbar"
+import Footer from "../components/headers/Footer/Footer"
 
 
 
@@ -9,7 +10,7 @@ const MainLayout = () => {
     <main className="overflow-hidden dark:bg-black">
         <Navbar/>
         <Outlet/>
-        <footer>Footer</footer>
+       <Footer/>
     </main>
   )
 }

@@ -8,7 +8,7 @@ const PopularClasses = () => {
 
   useEffect(() => {
     const fetchClasses = async () => {
-      const response = await axiosFetch.get('/classes');
+      const response = await axiosFetch.get('/approved-classes');
       //console.log(response.data)
       setClasses(response.data);
     };

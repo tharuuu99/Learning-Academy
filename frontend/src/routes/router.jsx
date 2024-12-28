@@ -17,6 +17,17 @@ import AsInstructor from "../pages/Dashboard/Student/Apply/AsInstructor";
 import Payment from "../pages/Dashboard/Student/Payment/Payment";
 import StudentCP from "../pages/Dashboard/Student/StudentCP";
 import CourseDetails from "../pages/Dashboard/Student/Enroll/CourseDetails";
+import InstructorCP from "../pages/Dashboard/Instructor/InstructorCP";
+import AddClass from "../pages/Dashboard/Instructor/AddClass";
+import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
+import PendingCourse from "../pages/Dashboard/Instructor/PendingCourse";
+import ApprovedCourse from "../pages/Dashboard/Instructor/ApprovedCourse";
+import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import UpdateUser from "../pages/Dashboard/Admin/UpdateUser";
+import AdminApplications from "../pages/Dashboard/Admin/AdminApplications";
 
 
 
@@ -91,7 +102,57 @@ const router = createBrowserRouter([
       {
         path: "course-details",
         element:<CourseDetails/>
-      }
+      },
+
+      //instructor Routs
+      {
+        path: "instructor-cp",
+        element: <InstructorCP/> 
+      },
+      {
+        path: "add-class",
+        element: <AddClass/> 
+      },
+      {
+        path: "my-classes",
+        element: <MyClasses/> 
+      },
+      {
+        path: "my-pending",
+        element: <PendingCourse/> 
+      },
+      {
+        path: "my-approved",
+        element: <ApprovedCourse/> 
+      },
+      {
+        path: 'update/:id',
+        element: <UpdateClass />,
+        loader: ({ params }) => fetch(`http://localhost:5000/class/${params.id}`)
+    },
+    //Admin Routes
+    {
+      path: "admin-home",
+      element: <AdminHome/> 
+    },
+    {
+      path: "manage-class",
+      element: <ManageClasses/> 
+    },
+    {
+      path: "manage-users",
+      element: <ManageUsers/> 
+    },
+    {
+      path: "update-user/:id",
+      element: <UpdateUser/>,
+      loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`)
+    },
+    {
+      path: "applications",
+      element: <AdminApplications/> 
+    }
+
     ]
   }
 ]);

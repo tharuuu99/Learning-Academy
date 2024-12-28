@@ -30,7 +30,7 @@ const Register = () => {
             const userImp = {
               name: user?.displayName,
               email: user?.email,
-              photoURL: user?.photoURL,
+              photoUrl: user?.photoUrl,
               role: "user",
               gender: data.gender,
               phone: data.phone,
@@ -58,7 +58,7 @@ const Register = () => {
     });
   };
 
-  const password = watch("password", '');
+  const password = watch("password", "");
 
   return (
     <div className="flex items-center justify-center bg-gray-100 pt-14">
@@ -158,16 +158,16 @@ const Register = () => {
 
             <div className="mb-4">
               <label
-                htmlFor="photoURL"
+                htmlFor="photoUrl"
                 className="block mb-2 font-bold text-gray-700"
               >
                 <AiOutlinePicture className="inline-block mb-1 mr-2 text-lg" />
                 Photo URL
               </label>
               <input
-                type="text"
                 placeholder="Photo URL"
-                {...register("photoUrl")}
+                type="text"
+                {...register("photoUrl", { required: true })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>

@@ -16,56 +16,58 @@ const Classes = () => {
   const [hoveredCard, setHoveredCard] = useState([null]);
   const axiosFetch = useAxiosFetch();
   const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleHover = (index) => {
     setHoveredCard(index);
   };
 
-  
   useEffect(() => {
     axiosFetch
-      .get("/classes")
+      .get("/approved-classes")
       .then((res) => setClasses(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   const handleSelect = async (id) => {
     if (!currentUser) {
-        alert("Please login first");
-        return navigate("/login");
+      alert("Please login first");
+      return navigate("/login");
     }
 
     try {
-        // Fetch enrolled classes and ensure the state is updated
-        const res = await axiosSecure.get(`/enrolled-classes/${currentUser?.email}`);
-        const fetchedEnrolledClasses = res.data;
+      // Fetch enrolled classes and ensure the state is updated
+      const res = await axiosSecure.get(
+        `/enrolled-classes/${currentUser?.email}`
+      );
+      const fetchedEnrolledClasses = res.data;
 
-        // Check if already enrolled
-        if (fetchedEnrolledClasses.find((item) => item.classes._id === id)) {
-            return alert("Already enrolled");
-        }
+      // Check if already enrolled
+      if (fetchedEnrolledClasses.find((item) => item.classes._id === id)) {
+        return alert("Already enrolled");
+      }
 
-        // Check if already selected
-        const cartRes = await axiosSecure.get(`/cart-item/${id}?email=${currentUser?.email}`);
-        if (cartRes.data.classId === id) {
-            return alert("Already selected");
-        }
+      // Check if already selected
+      const cartRes = await axiosSecure.get(
+        `/cart-item/${id}?email=${currentUser?.email}`
+      );
+      if (cartRes.data.classId === id) {
+        return alert("Already selected");
+      }
 
-        // Add to cart if not already enrolled or selected
-        const data = {
-            classId: id,
-            userMail: currentUser?.email,
-            date: new Date(),
-        };
-        const addRes = await axiosSecure.post('/add-to-cart', data);
-        alert("Successfully added to the cart!");
-        console.log(addRes.data);
+      // Add to cart if not already enrolled or selected
+      const data = {
+        classId: id,
+        userMail: currentUser?.email,
+        date: new Date(),
+      };
+      const addRes = await axiosSecure.post("/add-to-cart", data);
+      alert("Successfully added to the cart!");
+      console.log(addRes.data);
     } catch (err) {
-        console.error(err);
+      console.error(err);
     }
-};
-
+  };
 
   return (
     <div>
@@ -81,7 +83,7 @@ const Classes = () => {
             key={index}
             className={`relative hover:-translate-y-2 duration-150 hover:ring-[2px] hover:ring-secondary w-64  mx-auto ${
               cls.availabeSeats < 1 ? "bg-red-300" : "bg-white"
-            } dark:bg-slate-600 rounded-lg shadow-lg overflow-hidden cursor-pointer`}
+            } dark:bg-slate-900 rounded-lg shadow-lg overflow-hidden cursor-pointer`}
             onMouseEnter={() => handleHover(index)}
           >
             <div className="relative h-48">
@@ -123,7 +125,9 @@ const Classes = () => {
             </div>
             {/* details */}
             <div className="px-6 py-2">
-              <h3 className="mb-1 font-semibold">{cls.name}</h3>
+              <h3 className="mb-1 font-semibold text-black dark:text-white">
+                {cls.name}
+              </h3>
               <p className="text-xs text-gray-500 ">
                 Instructor: {cls.instructorName}
               </p>
@@ -132,7 +136,7 @@ const Classes = () => {
                   AvailableSeats: {cls.availableSeats}
                 </span>
                 <span className="font-semibold text-green-500">
-                  ${cls.price}
+                LKR {cls.price}
                 </span>
               </div>
               <Link to={`/class/${cls._id}`}>

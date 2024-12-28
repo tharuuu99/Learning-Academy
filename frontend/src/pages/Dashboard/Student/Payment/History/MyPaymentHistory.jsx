@@ -60,7 +60,7 @@ const MyPaymentHistory = () => {
     <div>
         <div className="mt-6 mb-16 text-center">
             <p className='text-gray-400'>Hey, <span className='font-bold text-secondary'>{currentUser.name}</span> Welcome...!</p>
-            <h1 className='text-4xl font-bold'>My Paym<span className='text-secondary'>ent Hist</span>ory</h1>
+            <h1 className='text-4xl font-bold text-black'>My Payment History</h1>
             <p className='my-3 text-sm text-gray-500'>You can see your payment history here </p>
         </div>
 

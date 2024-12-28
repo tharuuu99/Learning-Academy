@@ -3,7 +3,9 @@ import HeroContainer from "./Hero/HeroContainer"
 import PopularClasses from "./PopularClasses/PopularClasses"
 import PopularTeacher from "./PopularTeacher/PopularTeacher"
 
+
 const Home = () => {
+  
   return (
     <section>
       <HeroContainer/>

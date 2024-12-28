@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import bgImg from '../../../assets/home/banner-2.jpg'
 
 const Hero2 = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-cover" style={{backgroundImage:`url(${bgImg})` }}>
       <div className='flex items-center justify-start min-h-screen text-white bg-black pl-11 bg-opacity-60'>
@@ -13,7 +15,7 @@ const Hero2 = () => {
               </div>
               <div className='flex flex-wrap items-center gap-5'>
                 <button className='py-3 font-bold uppercase rounded-lg px-7 bg-secondary' >Join Today</button>
-                <button className='py-3 font-bold uppercase border rounded-lg px-7 hover:bg-secondary' >View Courses</button>
+                <button onClick={() => navigate('/classes')} className='py-3 font-bold uppercase border rounded-lg px-7 hover:bg-secondary' >View Courses</button>
               </div>
           </div>
         </div>
