@@ -251,7 +251,7 @@ async function run() {
 
     // GET ALL CLASSES ADDED BY INSTRUCTOR with status is approved
     app.get(
-      "/classes/:email",
+      "/classesApproved/:email",
       verifyJWT,
       verifyInstructor,
       async (req, res) => {

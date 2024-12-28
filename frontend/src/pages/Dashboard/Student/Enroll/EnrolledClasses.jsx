@@ -100,7 +100,7 @@ function EnrolledClasses() {
                 <h1 className="font-bold text-gray-500">
                   LKR {item.classes.price}
                 </h1>
-                <Link to={`/dashboard/course-details`}>
+                <Link to={`/class/${item.classes._id}`}>
                 <button className="px-3 py-1 mr-5 font-bold text-white shadow-md bg-secondary rounded-xl">
                   View
                 </button>

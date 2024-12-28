@@ -11,7 +11,7 @@ const Hero2 = () => {
               <p className='text-2xl md:text-4xl'>Best Courses</p>
               <h1 className='text-4xl font-bold md:text-7xl'> For All Learners</h1>
               <div className='md:w-1/2'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto recusandae, dolorum dignissimos ab ipsa accusamus magnam libero eaque porro, iure quos deserunt blanditiis fugit vero esse dolores hic velit error?</p>
+                <p>Step into a world of knowledge and growth. Our courses are designed to inspire, educate, and empower learners of all backgrounds</p>
               </div>
               <div className='flex flex-wrap items-center gap-5'>
                 <button className='py-3 font-bold uppercase rounded-lg px-7 bg-secondary' >Join Today</button>

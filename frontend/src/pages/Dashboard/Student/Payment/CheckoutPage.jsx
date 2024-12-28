@@ -148,7 +148,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
     return (
         <>
             <div className="text-center">
-                <h1 className="text-2xl font-bold">Payment Amount : <span className='text-secondary'>{price}$</span></h1>
+                <h1 className="text-2xl font-bold">Payment Amount : <span className='text-secondary'>LKR {price}</span></h1>
             </div>
             <form onSubmit={handleSubmit}>
                 <CardElement
