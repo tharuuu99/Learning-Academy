@@ -4,7 +4,7 @@ import { MdBookOnline } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import img from "../../assets/home/girl.jpg";
+
 
 
 const SingleClass = () => {
@@ -69,9 +69,9 @@ const SingleClass = () => {
         data-gr-ext-installed=""
       >
         {/* breadcrumb or header */}
-        <div className="py-20 mt-20 bg-center bg-no-repeat bg-cover breadcrumbs bg-slate-700 section-padding">
-          <div className="container text-center">
-            <h2 className="text-white">Course Details</h2>
+        <div className="bg-center bg-no-repeat bg-cover mt-28 breadcrumbs section-padding">
+          <div className="container text-center mb-9">
+            <h2 className="text-3xl text-secondary">{course?.name}</h2>
           </div>
         </div>
         
@@ -87,10 +87,17 @@ const SingleClass = () => {
                       className="block w-full h-full rounded-md object-fut"
                     />
                   </div>
-                  <h2 className="mb-2 text-2xl">{course?.name}</h2>
-
                   
-
+                  <h2 className="text-xl">Introductory Video on YouTube</h2>
+<a
+  href={course?.videoLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mb-2 text-base underline text-secondary"
+>
+  Watch Video
+</a>
+                         
                   
                   
                 </div>
@@ -100,17 +107,15 @@ const SingleClass = () => {
               <div className="col-span-12 mt-8 lg:col-span-4 md:mt-0">
                 <div className="sidebarWrapper space-y-[30px]">
                   <div className="space-y-5 wdiget custom-text ">
-                    <a className="h-[220px]  rounded relative block" href="#">
-                      <img
-                         src={course.Image}
-                        alt=""
-                        className="block object-cover w-full h-full rounded "
-                      />
+                  
+                          <p className="mt-4 text-justify">
+                            {course?.description}
+                          </p>
                       <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                         <img src="/play.png" alt="" />
                       </div>
-                    </a>
-                    <h3>LKR {course.price}</h3>
+                    
+                    <h3 className="text-secondary ">LKR {course.price}</h3>
                     <button onClick={() => handleSelect(course._id)} title={role === 'admin' || role === 'instructor' ? 'Instructor/Admin Can not be able to select ' ? course.availableSeats <1 : 'No seat avalible' : 'You can select this classes' } disabled={role === 'admin' || role === 'instructor' || course.availableSeats < 1}  className="w-full px-6 py-2 text-center text-white btn btn-primary bg-secondary ">
                       Enroll Now
                     </button>
@@ -170,14 +175,11 @@ const SingleClass = () => {
               <div className="items-center mt-6 space-y-5 author-meta sm:flex lg:space-x-16 sm:space-x-5 sm:space-y-0">
                     <div className="flex items-center space-x-4 group">
                       <div className="flex-none">
-                        <div className="w-12 h-12 rounded">
-                          
-                        <img src={img} alt="" />
-                        </div>
+                        
                       </div>
                       <div className="flex-1">
                         <p className=" text-secondary">
-                          Trainer
+                        Trainer
                           <a href="#" className="text-black dark:text-white">
                             : {course.instructorName}
                           </a>

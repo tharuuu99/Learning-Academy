@@ -134,6 +134,7 @@ const MyProfile = () => {
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
                     name="photoUrl"
                     type="file"
+                    required
                     onChange={handleImageChange}
                     accept="image/*"
                   />
