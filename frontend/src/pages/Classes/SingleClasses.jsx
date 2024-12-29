@@ -123,7 +123,7 @@ const SingleClass = () => {
                       <li className=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
                         <div className="flex items-center flex-1 space-x-3">
                           <FaUser className="inline-flex"/>
-                          <div className="font-semibold text-black ">
+                          <div className="font-semibold text-black dark:text-white">
                             Instructor
                           </div>
                         </div>
@@ -133,7 +133,7 @@ const SingleClass = () => {
                       <li className=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
                         <div className="flex items-center flex-1 space-x-3">
                           <MdBookOnline/>
-                          <div className="font-semibold text-black ">
+                          <div className="font-semibold text-black dark:text-white">
                             Lectures
                           </div>
                         </div>
@@ -145,7 +145,7 @@ const SingleClass = () => {
                       <li className=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
                         <div className="flex items-center flex-1 space-x-3">
                           <FaUsers />
-                          <div className="font-semibold text-black ">
+                          <div className="font-semibold text-black dark:text-white">
                             Enrolled
                           </div>
                         </div>
@@ -157,7 +157,7 @@ const SingleClass = () => {
                       <li className=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
                         <div className="flex items-center flex-1 space-x-3">
                           <FaLanguage />
-                          <div className="font-semibold text-black ">
+                          <div className="font-semibold text-black dark:text-white">
                             Language
                           </div>
                         </div>

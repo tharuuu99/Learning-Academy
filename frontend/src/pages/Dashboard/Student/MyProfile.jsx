@@ -1,4 +1,3 @@
-
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useAuth } from "../../../hooks/useAuth";
 import { useState } from "react";
@@ -10,8 +9,7 @@ const MyProfile = () => {
   const API_URL = `https://api.imgbb.com/1/upload?key=${KEY}`;
 
   const { user } = useAuth();
-  
-  
+
   const axiosSecure = useAxiosSecure();
   const [photoUrl, setPhoto] = useState(null);
   const { currentUser } = useUser();
@@ -69,11 +67,15 @@ const MyProfile = () => {
       <h1 className="mt-5 text-4xl font-bold text-center">
         <span className="text-secondary">{user?.displayName}</span>
       </h1>
-      
+
       <div>
-        <img className="w-32 h-32 mx-auto rounded-full mt-7" src={currentUser?.photoUrl  || `${img}` }alt="" />
+        <img
+          className="w-32 h-32 mx-auto rounded-full mt-7"
+          src={currentUser?.photoUrl || `${img}`}
+          alt=""
+        />
       </div>
-      
+
       <section className="">
         <div className="w-full px-4 py-8 mx-auto sm:px-6 lg:px-8 lg:w-3/4 md:w-full xl:w-3/4">
           <div className="p-2 bg-white border rounded-lg shadow-lg lg:p-6 border-secondary">
@@ -88,9 +90,7 @@ const MyProfile = () => {
                     placeholder="Your Name"
                     type="text"
                     required
-                    defaultValue={
-                      currentUser?.name ? currentUser?.name : ""
-                    }
+                    defaultValue={currentUser?.name ? currentUser?.name : ""}
                     id="name"
                     name="name"
                   />
@@ -100,14 +100,12 @@ const MyProfile = () => {
                     Phone
                   </label>
                   <input
-                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
                     placeholder="Phone Number"
                     required
                     type="tel"
                     id="phone"
-                    defaultValue={
-                      currentUser?.phone ? currentUser?.phone : ""
-                    }
+                    defaultValue={currentUser?.phone ? currentUser?.phone : ""}
                     name="phone"
                   />
                 </div>
@@ -142,30 +140,23 @@ const MyProfile = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-4 ">
-                          <label
-                            htmlFor="gender"
-                            className="ml-2"
-                          >
-                            
-                            Gender
-                          </label>
-                          <div  >
-                          <select
-                             required
-                             defaultValue={currentUser?.gender}
-                             name="gender"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                           
-                          >
-                            <option value="">Select Gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            <option value="other">Other</option>
-                          </select>
-                          </div>
-                          
-                        </div>
-              
+                <label htmlFor="gender" className="ml-2">
+                  Gender
+                </label>
+                <div>
+                  <select
+                    required
+                    defaultValue={currentUser?.gender}
+                    name="gender"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
 
               <div className="mt-4 ">
                 <button
