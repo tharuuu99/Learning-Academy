@@ -55,7 +55,7 @@ const handleSubmit = e =>{
                 </div>
             </div>
 
-            <button type='submit' className="block w-full px-5 py-3 text-sm font-medium text-white rounded-lg bg-secondary ">Sign in</button>
+            <button type='submit' className="block w-full px-5 py-3 text-sm font-medium text-white rounded-lg bg-secondary hover:bg-blue-700">Sign in</button>
             <p className="text-sm text-center text-gray-500">No account? <Link className='underline' to="/register">Sign up</Link></p>
         </form>
         <GoogleLogin/>

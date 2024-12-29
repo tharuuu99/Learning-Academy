@@ -28,6 +28,7 @@ import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import UpdateUser from "../pages/Dashboard/Admin/UpdateUser";
 import AdminApplications from "../pages/Dashboard/Admin/AdminApplications";
+import MyProfile from "../pages/Dashboard/Student/MyProfile";
 
 
 
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
         path: "course-details",
         element:<CourseDetails/>
       },
+      {
+        path: "my-profile",
+        element:<MyProfile/>
+      },
 
       //instructor Routs
       {
@@ -130,6 +135,10 @@ const router = createBrowserRouter([
         element: <UpdateClass />,
         loader: ({ params }) => fetch(`http://localhost:5000/class/${params.id}`)
     },
+    {
+      path: "my-profile",
+      element:<MyProfile/>
+    },
     //Admin Routes
     {
       path: "admin-home",
@@ -151,7 +160,11 @@ const router = createBrowserRouter([
     {
       path: "applications",
       element: <AdminApplications/> 
-    }
+    },
+    {
+      path: "my-profile",
+      element:<MyProfile/>
+    },
 
     ]
   }

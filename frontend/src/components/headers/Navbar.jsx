@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeProvider, THEME_ID, createTheme } from "@mui/material/styles";
 import { Button, Switch } from "@mui/material";
 import { motion } from "framer-motion";
-import photoUrl from "../../assets/home/girl.jpg";
+import img from "../../assets/dashboard/user.png";
 import { FaBars } from "react-icons/fa";
 import { AuthContext } from "../../utilities/providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -278,11 +278,14 @@ const Navbar = () => {
 
                 {user && (
                   <li>
+                    <Link to="dashboard/my-profile">
                     <img
-                      src={currentUser?.photoUrl}
+                      src={currentUser?.photoUrl  || `${img}` }
                       alt=""
                       className="h-[40px] rounded-full w-[40px]"
                     />
+                    </Link>
+                   
                   </li>
                 )}
 

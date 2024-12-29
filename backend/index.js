@@ -173,7 +173,7 @@ async function run() {
     });
 
     // UPDATE USER
-    app.put("/update-user/:id", verifyJWT, verifyAdmin, async (req, res) => {
+    app.put("/update-userbyAdmin/:id", verifyJWT,verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const updatedUser = req.body;
       const filter = { _id: new ObjectId(id) };
@@ -187,7 +187,27 @@ async function run() {
           phone: updatedUser.phone,
           about: updatedUser.about,
           photoUrl: updatedUser.photoUrl,
+          gender: updatedUser.gender,
           skills: updatedUser.skills ? updatedUser.skills : null,
+        },
+      };
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      res.send(result);
+    });
+
+
+    app.put("/update-profile/:id", verifyJWT, async (req, res) => {
+      const id = req.params.id;
+      const updatedUser = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          name: updatedUser.name,
+          address: updatedUser.address,
+          phone: updatedUser.phone,
+          photoUrl: updatedUser.photoUrl,
+          gender: updatedUser.gender,
         },
       };
       const result = await userCollection.updateOne(filter, updateDoc, options);

@@ -13,7 +13,7 @@ const UpdateUser = () => {
         const formData = new FormData(e.target);
         const updatedData = Object.fromEntries(formData);
 
-        axiosSecure.put(`/update-user/${userCredentials?._id}`, updatedData).then(res => {
+        axiosSecure.put(`/update-userbyAdmin/${userCredentials?._id}`, updatedData).then(res => {
             if(res.data.modifiedCount > 0){
                 alert("User updated successfully");
                 navigate('/dashboard/manage-users');

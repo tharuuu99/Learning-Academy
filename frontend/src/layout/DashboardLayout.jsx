@@ -4,6 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BiHomeAlt, BiLogInCircle } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 import { FaUsers } from "react-icons/fa";
 //import { IoMdDoneAll } from "react-icons/io";
 import { BsFillPostcardFill } from "react-icons/bs";
@@ -38,6 +39,11 @@ const adminNavItems = [
     icon: <TbBrandAppleArcade className="text-2xl" />,
     label: "Applications"
   },
+  {
+    to: "/dashboard/my-profile",
+    icon: <CgProfile   className="text-2xl" />,
+    label: "Profile",
+  },
 ];
 
 const instructorNavItems =[
@@ -66,6 +72,11 @@ const instructorNavItems =[
     icon: <IoMdDoneAll  className="text-2xl" />,
     label: "Approved CLasses",
   },
+  {
+    to: "/dashboard/my-profile",
+    icon: <CgProfile  className="text-2xl" />,
+    label: "Profile",
+  },
 ]
 
 const students = [
@@ -93,6 +104,11 @@ const students = [
     to: "/dashboard/apply-instructor",
     icon: <TbBrandAppleArcade className="text-2xl" />,
     label: "Apply for Instructor"
+  },
+  {
+    to: "/dashboard/my-profile",
+    icon: <CgProfile  className="text-2xl" />,
+    label: "Profile",
   },
 ];
 

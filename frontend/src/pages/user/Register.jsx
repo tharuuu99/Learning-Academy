@@ -43,7 +43,7 @@ const Register = () => {
                 .then(() => {
                   setError("");
                   navigate("/");
-                  return "Registration Successful!";
+                  alert ("Registration Successful!");
                 })
                 .catch((err) => {
                   throw new Error(err);
@@ -139,7 +139,7 @@ const Register = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-5">
+          
             <div className="mb-4">
               <label
                 htmlFor="phoneNumber"
@@ -156,7 +156,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label
                 htmlFor="photoUrl"
                 className="block mb-2 font-bold text-gray-700"
@@ -166,13 +166,12 @@ const Register = () => {
               </label>
               <input
                 placeholder="Photo URL"
-                type="text"
+                type="file"
                 {...register("photoUrl", { required: true })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
               />
-            </div>
-          </div>
-
+            </div> */}
+         
           <div className="mb-4">
             <label
               htmlFor="gender"
@@ -211,7 +210,7 @@ const Register = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="px-4 py-2 text-white rounded-md bg-secondary hover:bg-red-500"
+              className="px-4 py-2 text-white rounded-md bg-secondary hover:bg-blue-700"
             >
               Register
             </button>
