@@ -31,12 +31,12 @@ const handleSubmit = e =>{
     
   return (
     <div className='max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
-      <h1 className='text-2xl font-bold text-center text-secondary sm:text-3xl'> Get Started Today</h1>
-      <p className='max-w-md mx-auto mt-4 text-center text-gray-500'>Explore out comprehensive library of corses, meticulously created to cater to all levels of expertise</p>
+      <h1 className='text-2xl font-bold text-center text-secondary sm:text-3xl'> Welcome Back!</h1>
+      
 
      <div className='max-w-lg p-4 mx-auto mt-6 mb-0 rounded-lg shadow-lg sm:p-6 lg:p-8'>
         <form onSubmit={handleSubmit} className='space-y-4'>
-            <p className='text-lg font-medium text-center text-red-400'>Sign in to your account</p>
+            <p className='text-lg font-medium text-center text-slate-600 dark:text-white'>Sign in to your account</p>
             <div>
                 <label htmlFor="email" className='sr-only'>Email</label>
                 <div className='relative'>

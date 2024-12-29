@@ -20,42 +20,40 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    setError("");
-    signUp(data.email, data.password).then((result) => {
-      const user = result.user;
-      if (user) {
-        return updateUser(data.name, data.photoUrl)
-          .then(() => {
-            const userImp = {
-              name: user?.displayName,
-              email: user?.email,
-              photoUrl: user?.photoUrl,
-              role: "user",
-              gender: data.gender,
-              phone: data.phone,
-              address: data.address,
-            };
 
-            if (user.email && user.displayName) {
-              return axios
-                .post("http://localhost:5000/new-user", userImp)
-                .then(() => {
-                  setError("");
-                  navigate("/");
-                  alert ("Registration Successful!");
-                })
-                .catch((err) => {
-                  throw new Error(err);
-                });
-            }
-          })
-          .catch((err) => {
-            setError(err.code);
-            throw new Error(err);
-          });
+  const onSubmit = async (data) => {
+    setError(""); // Clear previous errors
+    try {
+      const result = await signUp(data.email, data.password);
+      const user = result.user;
+
+      if (user) {
+        await updateUser(data.name, data.photoUrl);
+        const userImp = {
+          name: user?.displayName,
+          email: user?.email,
+          photoUrl: user?.photoUrl,
+          role: "user",
+          gender: data.gender,
+          phone: data.phone,
+          address: data.address,
+        };
+
+        if (user.email && user.displayName) {
+          await axios.post("http://localhost:5000/new-user", userImp);
+          setError("");
+          navigate("/");
+          alert("Registration Successful!");
+        }
       }
-    });
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        alert("This email is already in use. Please use a different email.");
+      } else {
+        console.error(error);
+        setError(error.message || "An unexpected error occurred.");
+      }
+    }
   };
 
   const password = watch("password", "");
@@ -63,7 +61,9 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center bg-gray-100 pt-14">
       <div className="p-8 bg-white rounded-lg shadow-md">
-        <h2 className="mb-6 text-3xl font-bold text-center">Please Register</h2>
+        <h2 className="mb-6 text-3xl font-bold text-center">
+          Create Your Account
+        </h2>
 
         {/* form data */}
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -113,9 +113,20 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Enter password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div className="mb-4">
@@ -139,24 +150,23 @@ const Register = () => {
             </div>
           </div>
 
-          
-            <div className="mb-4">
-              <label
-                htmlFor="phoneNumber"
-                className="block mb-2 font-bold text-gray-700"
-              >
-                <AiOutlinePhone className="inline-block mb-1 mr-2 text-lg" />
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                placeholder="Phone number"
-                {...register("phone", { required: true })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              />
-            </div>
+          <div className="mb-4">
+            <label
+              htmlFor="phoneNumber"
+              className="block mb-2 font-bold text-gray-700"
+            >
+              <AiOutlinePhone className="inline-block mb-1 mr-2 text-lg" />
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              placeholder="Phone number"
+              {...register("phone", { required: true })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
 
-            {/* <div className="mb-4">
+          {/* <div className="mb-4">
               <label
                 htmlFor="photoUrl"
                 className="block mb-2 font-bold text-gray-700"
@@ -171,7 +181,7 @@ const Register = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
               />
             </div> */}
-         
+
           <div className="mb-4">
             <label
               htmlFor="gender"

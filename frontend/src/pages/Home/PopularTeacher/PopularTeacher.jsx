@@ -21,9 +21,7 @@ const PopularTeacher = () => {
           Our<span className='text-secondary'> Best </span>Teachers
         </h1>
         <div className='w-[40%] text-center mx-auto my-4'>
-          <p className='text-gray-500'>
-            Explore our Popular Classes. Here is some popular classes based on How many student enrolled
-          </p>
+         
         </div>
       </div>
       

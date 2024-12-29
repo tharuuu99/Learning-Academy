@@ -187,7 +187,7 @@ async function run() {
           phone: updatedUser.phone,
           about: updatedUser.about,
           photoUrl: updatedUser.photoUrl,
-          gender: updatedUser.gender,
+          
           skills: updatedUser.skills ? updatedUser.skills : null,
         },
       };
